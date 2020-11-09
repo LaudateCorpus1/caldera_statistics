@@ -1,0 +1,72 @@
+<style>
+a:link, a:visited
+{
+    color:black
+}
+</style>
+
+<div id="statistics-new-section" class="section-profile">
+    <div class="row">
+        <div class="topleft duk-icon"><img onclick="removeSection('statistics-new-section')" src="/gui/img/x.png"></div>
+        <div class="column section-border" style="flex:25%;text-align:left;padding:15px;">
+            <h1 style="font-size:70px;margin-top:-20px;">Ability Stats</h1>
+        </div>
+
+        <div class="column" style="flex:75%;padding:15px;text-align: left">
+            <div>
+                Overview:
+
+                <pre style="color:black">
+                    Total unique techniques:  {{ overall.techniques }}<br>
+                    Total techniques Linux:  {{ overall.linux }}<br>
+                    Total techniques Windows:  {{ overall.windows }}<br>
+                    Total techniques Darwin:  {{ overall.darwin }}<br>
+                    <hr>
+                    {% for key, value in overall.tactics.items() %}
+                    {{ key }}: {{ value }}
+                    {% endfor %}
+                </pre>
+                <hr>
+
+            </div>
+        </div>
+
+        <div class="column" style="flex:75%;padding:15px;text-align: left">
+            <div>
+                Implemented techniques:
+                {% for key, value in techniques.items() %}
+                    <pre style="color:black">{{ key }}:  {{ value.technique_name }} ({{ value.tactic }})<br>
+                    Linux:  {{ value.linux }} <br>
+                    Windows:  {{ value.windows }} <br>
+                    Darwin:  {{ value.darwin }}<br>
+                    <b>Total:  {{ value.total }}</b></pre>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="column" style="flex:75%;padding:15px;text-align: left">
+            <div>
+                Missing techniques ({{ overall.missing_count }}):
+                {% for m in missing %}
+                <pre><a href="{{ m.url }}" target="_blank" >{{ m.name }}:  {{ m.teid }}</a></pre>
+                <!-- <pre style="color:black; a:link, a:visited {color:black}">{{ m.name }}:  {{ m.teid }}</pre>-->
+                {% endfor %}
+            </div>
+        </div>
+
+        <br>
+
+        <!--
+        <div class="column" style="flex:75%;padding:15px;text-align: left">
+            <div>
+                Abilities:
+                {% for a in abilities %}
+                    <pre style="color:black">{{ a }}</pre>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+        -->
+    </div>
+</div>
